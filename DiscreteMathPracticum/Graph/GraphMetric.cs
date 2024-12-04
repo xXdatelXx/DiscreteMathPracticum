@@ -13,31 +13,37 @@ public sealed class GraphMetric(Graph graph)
       return diameter;
    }
 
-   public int Radius(int vertex)
+   public int Eccentricities(int vertex)
    {
       int[,] distanceMatrix = new GraphMatrices(graph).Distance();
 
       return Enumerable
-         .Range(0, distanceMatrix.GetLength(0))
+         .Range(0, distanceMatrix.GetLength(1))
          .Select(x => distanceMatrix[vertex, x])
-         .Max();
+         .Where(x => x > 0).Max();
+   }
+   
+   public int Radius()
+   {
+      int[,] distanceMatrix = new GraphMatrices(graph).Distance();
+      List<int> eccentricities = [];
+
+      for (int i = 0; i < distanceMatrix.GetLength(0); i++) 
+         eccentricities.Add(Eccentricities(i));
+
+      return eccentricities.Min();
    }
 
    public int[] Center()
    {
-      int minimalRadius = Radius(0);
+      int[,] distanceMatrix = new GraphMatrices(graph).Distance();
+      int radius = Radius();
       List<int> center = [];
 
-      foreach (var (vertex, _) in graph.Elements)
+      for (int i = 0; i < distanceMatrix.GetLength(0); i++)
       {
-         int radius = Radius(vertex - 1);
-         center.Add(radius);
-
-         if (minimalRadius > radius)
-         {
-            minimalRadius = radius;
-            center = [radius];
-         }
+         if (radius == Eccentricities(i))
+            center.Add(i + 1);
       }
 
       return center.ToArray();
