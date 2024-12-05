@@ -38,6 +38,7 @@ public sealed class GraphMatrices(Graph graph)
       return matrix;
    }
 
+   // Rewrite via BFS
    public int[,] Distance()
    {
       int[,] matrix = Adjacency();
