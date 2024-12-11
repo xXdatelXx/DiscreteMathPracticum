@@ -2,11 +2,11 @@ namespace DiscreteMath;
 
 public sealed class Graph
 {
-   public readonly Dictionary<int, IReadOnlyList<int>> Elements;
+   public readonly Dictionary<int, List<int>> Elements;
 
-   public Graph(Dictionary<int, IReadOnlyList<int>> elements)
+   public Graph(Dictionary<int, List<int>> elements)
    {
-      foreach (var (vertex, edges) in elements)
+      foreach ((int vertex, IReadOnlyList<int> edges) in elements)
       {
          if (vertex < 0)
             throw new ArgumentOutOfRangeException($"{nameof(vertex)} must be greater than or equal to 0.");

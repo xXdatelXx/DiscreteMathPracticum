@@ -4,39 +4,8 @@ public sealed class FirstPracticum : IPracticum
 {
    public void Execute()
    {
-      Console.WriteLine("First graph");
-      Graph graph1 = new(new Dictionary<int, IReadOnlyList<int>>
-      {
-         [1] = [2, 5],
-         [2] = [1, 3],
-         [3] = [4, 2],
-         [4] = [5, 3],
-         [5] = [6, 4, 1],
-         [6] = [8, 7, 5],
-         [7] = [8, 6],
-         [8] = [7, 6]
-      });
+      var graph = new GraphFactory().Create();
 
-      Exercise(graph1);
-
-      Console.WriteLine("Second graph");
-      Graph graph2 = new(new Dictionary<int, IReadOnlyList<int>>
-      {
-         [1] = [2],
-         [2] = [3],
-         [3] = [1],
-         [4] = [2, 5],
-         [5] = [6],
-         [6] = [7],
-         [7] = [8],
-         [8] = [4]
-      });
-
-      Exercise(graph2);
-   }
-
-   private void Exercise(Graph graph)
-   {
       Console.WriteLine("Exercise 2");
       GraphMatrices matrices = new(graph);
 

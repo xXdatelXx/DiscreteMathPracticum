@@ -2,7 +2,7 @@ namespace DiscreteMath;
 
 public sealed class GraphMatrices(Graph graph)
 {
-   private Dictionary<int, IReadOnlyList<int>> Elements => graph.Elements;
+   private Dictionary<int, List<int>> Elements => graph.Elements;
 
    public int[,] Adjacency()
    {

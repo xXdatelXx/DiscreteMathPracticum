@@ -1,4 +1,4 @@
 ﻿new DiscreteMath
    .Practicums
-   .SecondPracticum()
+   .ThirdPracticum()
    .Execute();
