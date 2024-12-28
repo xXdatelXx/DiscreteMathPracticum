@@ -1,13 +1,10 @@
 namespace DiscreteMath;
 
-public sealed class Graph
-{
+public sealed class Graph {
    public readonly Dictionary<int, List<int>> Elements;
 
-   public Graph(Dictionary<int, List<int>> elements)
-   {
-      foreach ((int vertex, IReadOnlyList<int> edges) in elements)
-      {
+   public Graph(Dictionary<int, List<int>> elements) {
+      foreach ((int vertex, IReadOnlyList<int> edges) in elements) {
          if (vertex < 0)
             throw new ArgumentOutOfRangeException($"{nameof(vertex)} must be greater than or equal to 0.");
          if (edges.Any(e => e < 0 || e > elements.Count))
@@ -17,6 +14,6 @@ public sealed class Graph
       Elements = elements;
    }
 
-   public int EdgesCount() =>
+   public int EdgesCount() => 
       (int)Elements.Sum(i => i.Value.Sum(edge => Elements[edge].Contains(i.Key) ? 0.5f : 1));
 }

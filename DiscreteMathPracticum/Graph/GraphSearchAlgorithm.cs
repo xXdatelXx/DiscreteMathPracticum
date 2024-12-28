@@ -1,17 +1,14 @@
 namespace DiscreteMath;
 
-public sealed class GraphSearchAlgorithm(Graph graph)
-{
+public sealed class GraphSearchAlgorithm(Graph graph) {
    /// <summary>
    ///    Breadth-first search
    /// </summary>
-   public int[] BFS(int vertex)
-   {
+   public int[] BFS(int vertex) {
       Queue<int> queue = [];
       HashSet<int> result = [];
 
-      while (result.Count == graph.Elements.Count)
-      {
+      while (result.Count != graph.Elements.Count) {
          result.Add(vertex);
          graph.Elements[vertex].ForEach(queue.Enqueue);
          vertex = queue.Dequeue();
@@ -23,8 +20,7 @@ public sealed class GraphSearchAlgorithm(Graph graph)
    /// <summary>
    ///    Decorrelated Fast Cipher
    /// </summary>
-   public int[] DFS(int vertex)
-   {
+   public int[] DFS(int vertex) {
       HashSet<int> result = [];
       Stack<int> stack = [];
 
@@ -32,8 +28,7 @@ public sealed class GraphSearchAlgorithm(Graph graph)
 
       return result.ToArray();
 
-      void Recurs(int current)
-      {
+      void Recurs(int current) {
          if (!result.Add(current))
             return;
 

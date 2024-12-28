@@ -1,26 +1,21 @@
 namespace DiscreteMath;
 
-public sealed class GraphFactory
-{
-   public Graph Create()
-   {
-      int vertexCount = 0;
+public sealed class GraphFactory {
+   public Graph Create() {
+      int vertexCount;
       Console.Write("Write number of vertexes: ");
-      while (int.TryParse(Console.ReadLine(), out vertexCount) && vertexCount > 0)
+      while (int.TryParse(Console.ReadLine(), out vertexCount) && vertexCount < 0)
          Console.WriteLine("Error: Please try again!.");
 
       Dictionary<int, List<int>> graphDictionary = new();
 
       for (int i = 1; i <= vertexCount; i++)
-      {
-         while (true)
-         {
+         while (true) {
             Console.Write($"Write vertexes that chain with {i}, with space: ");
             string? input = Console.ReadLine();
-            try
-            {
+            try {
                List<int> edges = input!
-                  .Split([' ', ','], StringSplitOptions.RemoveEmptyEntries)
+                  .Split(' ', StringSplitOptions.RemoveEmptyEntries)
                   .Select(int.Parse)
                   .ToList();
 
@@ -30,12 +25,10 @@ public sealed class GraphFactory
                graphDictionary[i] = edges;
                break;
             }
-            catch
-            {
+            catch {
                Console.WriteLine("Error: Please try again!.");
             }
          }
-      }
 
       return new Graph(graphDictionary);
    }

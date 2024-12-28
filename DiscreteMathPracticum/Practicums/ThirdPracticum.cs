@@ -8,7 +8,7 @@ public sealed class ThirdPracticum : IPracticum
       int start;
 
       Console.WriteLine("Write number of start vertex: ");
-      while (int.TryParse(Console.ReadLine(), out start) && start > 0)
+      while (int.TryParse(Console.ReadLine(), out start) && start < 0)
          Console.WriteLine("Error: try again");
 
       Console.WriteLine("DFS:");
@@ -17,7 +17,7 @@ public sealed class ThirdPracticum : IPracticum
          .ToList()
          .ForEach(Console.Write);
 
-      Console.WriteLine("\n BFS:");
+      Console.WriteLine("\nBFS:");
       new GraphSearchAlgorithm(graph)
          .BFS(start)
          .ToList()
